@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const swaggerUI = require('swagger-ui-express');
 const config = require('../../config');
 const logger = require('../logger');
 
@@ -11,6 +12,7 @@ class ExpressServer{
         this.pathUser = `${config.api.prefix}/users`;
 
         this._middlewares();
+        this._swaggerConfig();
         this._routes();
 
         // bad request or route doesnt exist
@@ -52,7 +54,14 @@ class ExpressServer{
             }
             res.json(body);
         });
+    }
 
+    _swaggerConfig(){
+        this.app.use(
+            config.swagger.path,
+            swaggerUI.serve,
+            swaggerUI.setup(require('../swagger/swagger.json'))
+        )
     }
 
     async start(){
