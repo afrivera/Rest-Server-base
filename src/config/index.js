@@ -19,5 +19,6 @@ module.exports = {
     },
     swagger:{
         path: '/documentation'
-    }
+    },
+    databaseUrl: process.env.DB_URL
 }

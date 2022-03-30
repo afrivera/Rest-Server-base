@@ -4,7 +4,7 @@
     "title": "API Rest base repo",
     "description": "This is an API base to start new Proyect",
     "contact": {
-      "email": "you@your-company.com"
+      "email": "andresrfelip@hotmail.com"
     },
     "license": {
       "name": "Apache 2.0",
@@ -28,68 +28,27 @@
       "description": "Secured Admin-only calls"
     },
     {
-      "name": "developers",
-      "description": "Operations available to regular developers"
+      "name": "users",
+      "description": "Operations about users"
     }
   ],
   "paths": {
-    "/inventory": {
+    "/users": {
       "get": {
         "tags": [
-          "developers"
+          "users"
         ],
-        "summary": "searches inventory",
-        "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
-        "operationId": "searchInventory",
-        "parameters": [
-          {
-            "name": "searchString",
-            "in": "query",
-            "description": "pass an optional search string for looking up inventory",
-            "required": false,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "description": "number of records to skip for pagination",
-            "required": false,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "maximum number of records to return",
-            "required": false,
-            "style": "form",
-            "explode": true,
-            "schema": {
-              "maximum": 50,
-              "minimum": 0,
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
+        "summary": "get a list of all existing users",
+        "description": "",
         "responses": {
           "200": {
-            "description": "search results matching criteria",
+            "description": "The array of users in JSON format.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/InventoryItem"
+                    "$ref": "#/components/schemas/User"
                   }
                 }
               }
@@ -133,19 +92,16 @@
   },
   "components": {
     "schemas": {
-      "InventoryItem": {
+      "User": {
         "required": [
-          "id",
-          "manufacturer",
-          "name",
-          "releaseDate"
+          "id"
         ],
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "format": "uuid",
-            "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+            "description": "The user Id.",
+            "example": "3"
           },
           "name": {
             "type": "string",
