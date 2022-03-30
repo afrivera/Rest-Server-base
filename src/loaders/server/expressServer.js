@@ -30,7 +30,7 @@ class ExpressServer{
         this.app.head("/status",(req, res)=>{
             res.status(200).end();
         });
-        this.app.use(this.pathUser, require('../../routes/users'));
+        this.app.use(this.pathUser, require('../../routes/users')); 
     }
 
     _notFound(){
