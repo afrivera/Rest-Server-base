@@ -1,20 +1,11 @@
 const { response, request} = require('express');
-
-const User = require('../models/user');
+const userService = require('../services/userService');
 
 const getAllUsers = async(req = request, res = response, next)=>{
     try {
-        const { limit = 5, since= 0} = req.query;
-        const query = { state: true };
-        const [ total, users ] = await Promise.all([
-            User.countDocuments( query ),
-            User.find(query)
-                            .skip(Number( since ))
-                            .limit(Number( limit ))
-        ]);
+        const users = await userService.findAll();
 
         res.json({
-            total,
             users
         })
 
@@ -23,12 +14,23 @@ const getAllUsers = async(req = request, res = response, next)=>{
     }
 }
 
+const getById = async( req = request, res = response, next)=>{
+    try {
+        const { id } = req.params;
+        const user = await userService.findById( id );
+        res.json({
+            user
+        })
+    } catch (error) {
+        next( error );
+    }
+
+}
+
 const createUser = async(req = request, res = response, next)=>{
     try {
         let user = req.body;
-        user = new User( user );
-
-        await user.save();
+        user = await userService.save( user );
 
         res.status(201).json({user});
         
@@ -43,7 +45,7 @@ const updateUser = async (req = request, res = response, next)=>{
         const { id } = req.params;
         let user = req.body;
 
-        const userUpdate = await User.findByIdAndUpdate( id, user, { new: true } );
+        const userUpdate = await userService.update( id, user );
 
         res.json({userUpdate});
         
@@ -52,15 +54,11 @@ const updateUser = async (req = request, res = response, next)=>{
     }
 }
 
-const updatePartialUser = ( req = request, res = response)=>{
-
-}
-
 const deleteUser = async(req = request, res = response, next)=>{
     try {
         const { id } = req.params;
 
-        await User.findByIdAndDelete( id );
+        await userService.remove( id );
 
         res.json({msg: 'Deleted'});
         
@@ -73,6 +71,6 @@ module.exports = {
     getAllUsers,
     createUser,
     updateUser,
-    updatePartialUser,
+    getById,
     deleteUser
 }
