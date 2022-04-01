@@ -1,8 +1,8 @@
 const UserRepository = require('../repositories/userRepository');
 const repository = new UserRepository();
 
-const findAll = async()=>{
-    return await repository.findAll();
+const findAll = async( filter, options )=>{
+    return await repository.findAllWithPagination( filter, options );
 }
 
 const findById = async( id )=>{

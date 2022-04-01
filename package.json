@@ -9,10 +9,13 @@
   "author": "Andres Rivera",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mongoose": "^6.2.9",
+    "mongoose-paginate-v2": "^1.6.3",
+    "mongoose-unique-validator": "^3.0.0",
     "morgan": "^1.10.0",
     "swagger-ui-express": "^4.3.0",
     "winston": "^3.6.0"
