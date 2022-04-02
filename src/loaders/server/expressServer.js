@@ -10,6 +10,7 @@ class ExpressServer{
         this.app = express();
         this.port = config.port;
         this.pathUser = `${config.api.prefix}/users`;
+        this.pathAuth = `${config.api.prefix}/auth`;
 
         this._middlewares();
         this._swaggerConfig();
@@ -31,6 +32,7 @@ class ExpressServer{
             res.status(200).end();
         });
         this.app.use(this.pathUser, require('../../routes/users')); 
+        this.app.use(this.pathAuth, require('../../routes/auth')); 
     }
 
     _notFound(){
