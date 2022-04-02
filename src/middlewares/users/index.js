@@ -24,7 +24,7 @@ const _roleValid = check('role').optional().custom(
         }
     }
 );
-const _dateValid = check('birthday').optional().isDate('MM-DD-YYYY');
+const _dateValid = check('birthdate').optional().isDate('MM-DD-YYYY');
 
 
 // validations put
@@ -34,7 +34,7 @@ const _optionalEmailValid = check('email', 'Email is Invalid').optional().isEmai
 const _optionalEmailExist = check('email').optional().custom(
     async (email = '') =>{
         const userFound = await userService.findByEmail(email );
-        if(!userFound){
+        if(userFound){
             throw new AppError('Email already exist in DB', 400 );
         }
     }
@@ -81,7 +81,23 @@ const putRequestValidations = [
     _validationResult
 ];
 
+const deleteRequestValidation = [
+    _idRequired,
+    _idMongo,
+    _idExist,
+    _validationResult
+];
+
+const getRequestValidation = [
+    _idRequired,
+    _idMongo,
+    _idExist,
+    _validationResult
+];
+
 module.exports = {
     postRequestValidations,
-    putRequestValidations
+    putRequestValidations,
+    deleteRequestValidation,
+    getRequestValidation
 }
