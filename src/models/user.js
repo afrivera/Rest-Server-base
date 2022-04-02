@@ -26,13 +26,15 @@ const userSchema = Schema({
         type: Boolean,
         default: true
     },
-    birthday: Date,
+    birthdate: Date,
     role: {
         type: String,
         required: true,
         default:'USER_ROLE',
         enum: ['USER_ROLE', 'ADMIN_ROLE']
     }
+},{
+    timestamps: true
 });
 
 userSchema.plugin( uniqueValidator, {message: 'already exist in the DB'});
