@@ -76,6 +76,15 @@ const validToken = async token=>{
     }
 }
 
+const validRol =(user, ...roles)=>{
+    if( !roles.includes(user.role)){
+        throw new AppError('Authorization failed! user without privileges', 403);
+    }
+
+    return true;
+
+}
+
 const _generarJWT = (id)=>{
     return new Promise((resolve, reject)=>{
         jwt.sign({ id }, config.auth.secret, {
@@ -93,5 +102,6 @@ const _generarJWT = (id)=>{
 
 module.exports = {
     login,
-    validToken
+    validToken,
+    validRol
 }
