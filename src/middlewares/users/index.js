@@ -3,6 +3,7 @@ const { ROLES } = require('../../constants');
 const AppError = require('../../errors/appError');
 const userService = require('../../services/userService');
 const {  validResult } = require('../common');
+const { validJWT } = require('../auth')
 
 // validations
 const _nameRequired = check('name', 'Name required').not().isEmpty();
@@ -52,6 +53,7 @@ const _idExist = check('id').custom(
 
 
 const postRequestValidations = [
+    validJWT,
     _nameRequired,
     _emailRequired,
     _emailValid,
