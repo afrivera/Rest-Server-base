@@ -50,7 +50,9 @@ const _idExist = check('id').custom(
     }
 );
 
-
+const getAllRequestValidation = [
+    validJWT
+]
 
 const postRequestValidations = [
     validJWT,
@@ -100,5 +102,6 @@ module.exports = {
     postRequestValidations,
     putRequestValidations,
     deleteRequestValidation,
-    getRequestValidation
+    getRequestValidation,
+    getAllRequestValidation
 }
