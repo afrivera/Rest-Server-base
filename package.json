@@ -4,10 +4,20 @@
   "description": "rest server",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js",
+    "test": "node postman/newman",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "author": "Andres Rivera",
   "license": "ISC",
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
@@ -23,6 +33,11 @@
     "winston": "^3.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "husky": "^7.0.0",
+    "lint-staged": "^12.3.7",
+    "newman": "^5.3.2",
+    "newman-reporter-htmlextra": "^1.22.8",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2"
   }
 }

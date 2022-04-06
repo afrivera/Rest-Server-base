@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const path = require('path');
 const swaggerUI = require('swagger-ui-express');
 const config = require('../../config');
 const logger = require('../logger');
@@ -31,6 +32,13 @@ class ExpressServer{
         this.app.head("/status",(req, res)=>{
             res.status(200).end();
         });
+
+        this.app.get("/test-reports",(req, res)=>{
+            res.sendFile(
+                path.join(__dirname , '../../../postman/report.html')
+            );
+        });
+
         this.app.use(this.pathUser, require('../../routes/users')); 
         this.app.use(this.pathAuth, require('../../routes/auth')); 
     }
