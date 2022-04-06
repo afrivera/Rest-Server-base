@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js",
-    "test": "node postman/newman"
+    "test": "node postman/newman",
+    "prepare": "husky install"
   },
   "author": "Andres Rivera",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "winston": "^3.6.0"
   },
   "devDependencies": {
+    "husky": "^7.0.0",
     "newman": "^5.3.2",
     "newman-reporter-htmlextra": "^1.22.8",
     "nodemon": "^2.0.15"
