@@ -13,10 +13,10 @@
   "author": "Andres Rivera",
   "license": "ISC",
   "lint-staged": {
-      "*.{js, son}": [
-        "prettier --write",
-        "git add"
-      ]
+    "*.{js,json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
