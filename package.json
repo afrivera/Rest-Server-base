@@ -4,7 +4,9 @@
   "description": "rest server",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js",
+    "test": "node postman/newman"
   },
   "author": "Andres Rivera",
   "license": "ISC",
@@ -23,6 +25,8 @@
     "winston": "^3.6.0"
   },
   "devDependencies": {
+    "newman": "^5.3.2",
+    "newman-reporter-htmlextra": "^1.22.8",
     "nodemon": "^2.0.15"
   }
 }
